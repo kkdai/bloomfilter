@@ -78,3 +78,19 @@ func BenchmarkTen(b *testing.B) {
 		fmt.Printf("The %dth member test failed\n", randIndex)
 	}
 }
+
+func TestBasicCBF(t *testing.T) {
+	cbf := NewCountingBloomFilter(100, 0.01)
+	cbf.Add([]byte("foo"))
+	cbf.Add([]byte("john"))
+	cbf.Add([]byte("tom"))
+
+	if cbf.Test([]byte("tom")) == false {
+		t.Errorf("CBF: test failed\n")
+	}
+
+	cbf.Remove([]byte("john"))
+	if cbf.Test([]byte("john")) == true {
+		t.Errorf("CBF: remove failed\n")
+	}
+}
