@@ -1,7 +1,7 @@
 Bloom Filter
 ==================
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/kkdai/bloomfilter/master/LICENSE)  [![GoDoc](https://godoc.org/github.com/kkdai/bloomfilter?status.svg)](https://godoc.org/github.com/kkdai/bloomfilter)  [![Build Status](https://travis-ci.org/kkdai/bloomfilter)](https://travis-ci.org/kkdai/bloomfilter)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/kkdai/bloomfilter/master/LICENSE)  [![GoDoc](https://godoc.org/github.com/kkdai/bloomfilter?status.svg)](https://godoc.org/github.com/kkdai/bloomfilter)  [![Build Status](https://travis-ci.org/kkdai/bloomfilter.svg?branch=master)](https://travis-ci.org/kkdai/bloomfilter)
 
 
 [Bloom Filter](https://en.wikipedia.org/wiki/Bloom_filter) is a space-efficient probabilistic data structure, conceived by Burton Howard Bloom in 1970.
