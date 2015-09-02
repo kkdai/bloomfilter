@@ -16,6 +16,7 @@ Install
 Usage
 ---------------
 
+```go
     //Create a couting bloom filter expect size 100, false detect rate 0.01
 	cbf := NewCountingBloomFilter(100, 0.01)
 	
@@ -32,6 +33,8 @@ Usage
 	
 	//test again
 	fmt.Println("Test cbf:", cbf.Test([]byte("john"))) //return "false"
+```
+
 
 Inspired
 ---------------
