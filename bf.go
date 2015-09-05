@@ -1,7 +1,6 @@
 package bf
 
 import (
-	"encoding/binary"
 	"hash"
 	"hash/fnv"
 	"math"
@@ -11,13 +10,13 @@ import (
 type cbf struct {
 	m      int
 	k      int
-	h      hash.Hash64
+	h      hash.Hash32
 	bfList []int
 }
 
 //NewCountingBloomFilter : Create a counting bloom filter with assigned expect element count and false detect rate.
 func NewCountingBloomFilter(totalNumber uint32, falseDetectRate float64) *cbf {
-	b := &cbf{h: fnv.New64()}
+	b := &cbf{h: fnv.New32()}
 	b.estimateMK(totalNumber, falseDetectRate)
 	b.bfList = make([]int, b.m)
 	return b
@@ -63,8 +62,8 @@ func (b *cbf) hashFuns(indexFn int, data []byte) int {
 	//Hash function
 	b.h.Reset()
 	b.h.Write(data)
-	hashData := b.h.Sum(nil)
-	hasInt := int(binary.BigEndian.Uint32(hashData[0:5]))
+	hashData := b.h.Sum32()
+	hasInt := int(hashData)
 	return (hasInt + indexFn) % b.m
 }
 
