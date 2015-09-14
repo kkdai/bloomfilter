@@ -42,6 +42,12 @@ Inspired
 - [https://github.com/pmylund/go-bloom](https://github.com/pmylund/go-bloom)
 - [https://github.com/willf/bloom](https://github.com/willf/bloom)
 
+Project52
+---------------
+
+It is one of my [project 52](https://github.com/kkdai/project52).
+
+
 License
 ---------------
 
