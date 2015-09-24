@@ -7,7 +7,7 @@ import (
 )
 
 //CBF :Counting Bloom Filter
-type cbf struct {
+type CBF struct {
 	m      int
 	k      int
 	h      hash.Hash32
@@ -15,25 +15,25 @@ type cbf struct {
 }
 
 //NewCountingBloomFilter : Create a counting bloom filter with assigned expect element count and false detect rate.
-func NewCountingBloomFilter(totalNumber uint32, falseDetectRate float64) *cbf {
-	b := &cbf{h: fnv.New32()}
+func NewCountingBloomFilter(totalNumber uint32, falseDetectRate float64) *CBF {
+	b := &CBF{h: fnv.New32()}
 	b.estimateMK(totalNumber, falseDetectRate)
 	b.bfList = make([]int, b.m)
 	return b
 }
 
 //Add :add element into this cbf structure.
-func (b *cbf) Add(element []byte) {
+func (b *CBF) Add(element []byte) {
 	b.bfSet(element)
 }
 
 //Test :test element if exist in cbf structure.
-func (b *cbf) Test(element []byte) bool {
+func (b *CBF) Test(element []byte) bool {
 	return b.bfTest(element)
 }
 
 //Remove :will remove item from this structure.
-func (b *cbf) Remove(element []byte) {
+func (b *CBF) Remove(element []byte) {
 	if !b.bfTest(element) {
 		return
 	}
@@ -48,7 +48,7 @@ func (b *cbf) Remove(element []byte) {
 	}
 }
 
-func (b *cbf) estimateMK(number uint32, posibility float64) {
+func (b *CBF) estimateMK(number uint32, posibility float64) {
 	//m = -1 * (n * lnP)/(ln2)^2
 	nFloat := float64(number)
 	ln2 := math.Log(2)
@@ -58,7 +58,7 @@ func (b *cbf) estimateMK(number uint32, posibility float64) {
 	b.k = int(math.Ceil(float64(b.m) / nFloat * ln2))
 }
 
-func (b *cbf) hashFuns(indexFn int, data []byte) int {
+func (b *CBF) hashFuns(indexFn int, data []byte) int {
 	//Hash function
 	b.h.Reset()
 	b.h.Write(data)
@@ -67,7 +67,7 @@ func (b *cbf) hashFuns(indexFn int, data []byte) int {
 	return (hasInt + indexFn) % b.m
 }
 
-func (b *cbf) bfSet(data []byte) {
+func (b *CBF) bfSet(data []byte) {
 	for i := 0; i < b.k; i++ {
 		listIndex := b.hashFuns(i, data)
 		// fmt.Println("set index:", listIndex)
@@ -75,7 +75,7 @@ func (b *cbf) bfSet(data []byte) {
 	}
 }
 
-func (b *cbf) bfTest(data []byte) bool {
+func (b *CBF) bfTest(data []byte) bool {
 	for i := 0; i < b.k; i++ {
 		listIndex := b.hashFuns(i, data)
 		// fmt.Println("test index:", listIndex)
