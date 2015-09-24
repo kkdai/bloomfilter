@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func ExampleBasicBloomFilter() {
+func ExampleCBF() {
 	m := 5
 	h1 := func(input int) int {
 		return (input % m) + 1
